@@ -38,3 +38,5 @@ Route::get('/friends/accept/{username}', 'FriendController@getAccept')->name('fr
 
 // Statuses
 Route::post('/status', 'StatusController@postStatus')->name('status.post')->middleware(['auth']);
+
+Route::post('/status/{statusId}/reply', 'StatusController@postReply')->name('status.reply')->middleware(['auth']);

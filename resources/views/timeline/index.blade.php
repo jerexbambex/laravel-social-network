@@ -24,7 +24,7 @@
 	<div class="row mt-3">
 		<div class="col-lg-5">
 			@if (!$statuses->count())
-				<p>There is nothing in your ttimeline, yet.</p>
+				<p>There is nothing in your timeline, yet.</p>
 			@else
 				@foreach ($statuses as $status)
 					<div class="media mt-1">
@@ -40,10 +40,10 @@
 						    		<li class="d-inline">10 likes</li>
 						    	</ul>
 						    </small>
-						    <form role="form" action="#" method="post">
+						    <form role="form" action="{{ route('status.reply', ['statusId' => $status->id]) }}" method="post">
 						    	{{ csrf_field() }}
 						    	<div class="form-group">
-						    		<textarea name="reply-1" class="form-control" rows="2" placeholder="reply to this status"></textarea>
+						    		<textarea name="reply-{{ $status->id }}" class="form-control" rows="2" placeholder="reply to this status"></textarea>
 						    		<button type="submit" class="mt-2 btn btn-primary btn-sm">Reply</button>
 						    	</div>
 						    </form>
