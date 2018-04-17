@@ -40,6 +40,24 @@
 						    		<li class="d-inline">10 likes</li>
 						    	</ul>
 						    </small>
+
+						    @foreach ($status->replies as $reply)
+						    	<div class="media mt-3">
+								    <a href="{{ route('profile.index', ['username' => $reply->user->username]) }}"><img class="mr-3" src="/assets/img/avatar.png" alt="{{ $reply->user->getFirstNameOrUsername() }}">
+								    </a>
+							      	<div class="media-body">
+						        		<h5 class="mt-0"><a href="{{ route('profile.index', ['username' => $reply->user->username]) }}">{{ $reply->user->getFirstNameOrUsername() }}</a></h5>
+							        	<p>{{ $reply->body }}</p>
+							        	<small>
+								        	<ul class="list-inline">
+								        		<li class="d-inline">{{ $reply->created_at->diffForHumans() }}</li>
+								        		<li class="d-inline"><a href="#">4 Likes</a></li>
+								        	</ul>
+								        </small>
+							      	</div>
+							    </div>
+						    @endforeach
+
 						    <form role="form" action="{{ route('status.reply', ['statusId' => $status->id]) }}" method="post">
 						    	{{ csrf_field() }}
 						    	<div class="form-group">
@@ -49,6 +67,7 @@
 						    </form>
 					  	</div>
 					</div>
+					<hr>
 				@endforeach
 				{{ $statuses->render() }}
 			@endif
